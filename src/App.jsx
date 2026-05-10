@@ -250,6 +250,9 @@ function Hero() {
     <section id="home" className="hero section-anchor">
       <div className="hero-art" aria-hidden="true">
         <div className="sun" />
+        <div className="trail-sign sign-one">SAFETY</div>
+        <div className="trail-sign sign-two">ACCESS</div>
+        <div className="trail-sign sign-three">CLIMATE</div>
         <div className="ridge ridge-back" />
         <div className="ridge ridge-mid" />
         <div className="ridge ridge-front" />
@@ -402,7 +405,7 @@ function Directory(props) {
 
 function ResourceCard({ resource, expanded, onToggle }) {
   return (
-    <article className="resource-card">
+    <article className="resource-card" style={{ "--accent": resource.accent }}>
       <button
         className="card-button"
         type="button"

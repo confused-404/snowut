@@ -2,12 +2,15 @@
   color-scheme: light;
   --pine: #123d35;
   --pine-2: #1d5a4f;
-  --slate: #35566c;
+  --slate: #314f77;
   --sky: #d9e8ef;
   --ice: #f5f9fb;
   --snow: #ffffff;
   --amber: #d4942a;
   --ember: #be5e32;
+  --coral: #df6a53;
+  --glacier: #79b8c8;
+  --violet: #7060a8;
   --ink: #142421;
   --muted: #5c6d70;
   --line: #d7e1e3;
@@ -27,7 +30,9 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 15% 0%, rgba(212, 148, 42, 0.16), transparent 26rem),
+    linear-gradient(120deg, rgba(18, 61, 53, 0.045) 0 1px, transparent 1px 42px),
+    linear-gradient(60deg, rgba(49, 79, 119, 0.04) 0 1px, transparent 1px 46px),
+    radial-gradient(circle at 15% 0%, rgba(212, 148, 42, 0.18), transparent 26rem),
     linear-gradient(180deg, #eff7f8 0%, #ffffff 34rem);
 }
 
@@ -68,8 +73,10 @@ button {
   justify-content: space-between;
   gap: 1.25rem;
   padding: 0.9rem clamp(1rem, 3vw, 2.5rem);
-  background: rgba(255, 255, 255, 0.88);
-  border-bottom: 1px solid rgba(215, 225, 227, 0.78);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(247, 251, 251, 0.86)),
+    repeating-linear-gradient(135deg, rgba(18, 61, 53, 0.08) 0 1px, transparent 1px 12px);
+  border-bottom: 3px solid rgba(212, 148, 42, 0.72);
   backdrop-filter: blur(18px);
 }
 
@@ -87,10 +94,11 @@ button {
   height: 2.4rem;
   place-items: center;
   color: var(--snow);
-  background: linear-gradient(135deg, var(--pine), var(--slate));
-  border-radius: 0.75rem;
+  background: conic-gradient(from 220deg, var(--amber), var(--pine), var(--slate), var(--coral), var(--amber));
+  border-radius: 0.25rem 0.9rem 0.25rem 0.9rem;
   font-weight: 900;
   box-shadow: var(--soft-shadow);
+  transform: rotate(-7deg);
 }
 
 .brand strong,
@@ -112,8 +120,8 @@ button {
 }
 
 .nav a {
-  padding: 0.6rem 0.75rem;
-  border-radius: 999px;
+  padding: 0.58rem 0.76rem;
+  border-radius: 0.25rem 0.8rem 0.25rem 0.8rem;
   color: #2d4241;
   font-size: 0.92rem;
   text-decoration: none;
@@ -122,6 +130,7 @@ button {
 
 .nav a:hover {
   background: #e7f0f1;
+  box-shadow: inset 0 -3px 0 var(--amber);
 }
 
 .section-anchor {
@@ -136,8 +145,9 @@ button {
   overflow: hidden;
   padding: clamp(7rem, 12vw, 10rem) clamp(1rem, 4vw, 4rem) 4rem;
   background:
-    linear-gradient(180deg, rgba(10, 39, 47, 0.08), rgba(12, 58, 52, 0.72)),
-    linear-gradient(135deg, #dcecf2 0%, #f8fbfc 38%, #a9c2ca 100%);
+    radial-gradient(circle at 80% 16%, rgba(255, 215, 127, 0.44), transparent 10rem),
+    linear-gradient(180deg, rgba(10, 39, 47, 0.04), rgba(12, 58, 52, 0.76)),
+    linear-gradient(135deg, #cfe7ee 0%, #fbfcf8 36%, #8fb0bd 100%);
   isolation: isolate;
 }
 
@@ -193,7 +203,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 0.78rem 1.1rem;
-  border-radius: 0.7rem;
+  border-radius: 0.25rem 0.95rem 0.25rem 0.95rem;
   font-weight: 800;
   text-decoration: none;
   transition:
@@ -209,14 +219,17 @@ button {
 
 .button.primary {
   color: #10231f;
-  background: var(--amber);
-  box-shadow: 0 16px 36px rgba(20, 36, 33, 0.22);
+  background: linear-gradient(135deg, #f1bf5a, var(--amber));
+  box-shadow:
+    0 16px 36px rgba(20, 36, 33, 0.22),
+    inset 0 -4px 0 rgba(116, 76, 15, 0.18);
 }
 
 .button.secondary,
 .button.ghost {
   color: var(--pine);
-  background: var(--snow);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(232, 245, 247, 0.95));
 }
 
 .button.ghost {
@@ -239,6 +252,46 @@ button {
   background: radial-gradient(circle, #ffd77f 0%, #eaa93e 58%, transparent 62%);
   border-radius: 999px;
   opacity: 0.95;
+}
+
+.trail-sign {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: clamp(5.3rem, 9vw, 7rem);
+  height: clamp(5.3rem, 9vw, 7rem);
+  color: var(--snow);
+  border: 3px solid rgba(255, 255, 255, 0.68);
+  font-size: clamp(0.62rem, 1vw, 0.76rem);
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-shadow: none;
+  box-shadow: 0 22px 50px rgba(10, 31, 35, 0.22);
+}
+
+.sign-one {
+  top: 22%;
+  right: 32%;
+  background: var(--ember);
+  border-radius: 999px;
+  transform: rotate(-12deg);
+}
+
+.sign-two {
+  top: 38%;
+  right: 11%;
+  background: var(--slate);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  transform: rotate(8deg);
+}
+
+.sign-three {
+  top: 17%;
+  left: 10%;
+  background: var(--pine-2);
+  border-radius: 0.3rem;
+  transform: rotate(9deg);
 }
 
 .ridge,
@@ -287,14 +340,30 @@ button {
 .stats-band {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border-block: 1px solid var(--line);
+  gap: 0;
+  padding: 0.75rem clamp(1rem, 4vw, 4rem);
+  background: #102f2b;
+  border-block: 0;
 }
 
 .stats-band div {
-  padding: 1.4rem clamp(1rem, 3vw, 2rem);
-  background: rgba(255, 255, 255, 0.86);
+  position: relative;
+  padding: 1.45rem clamp(1rem, 3vw, 2rem);
+  background: #f6fbfb;
+  border-left: 5px solid var(--amber);
+  clip-path: polygon(0 0, calc(100% - 1.2rem) 0, 100% 100%, 1.2rem 100%);
+}
+
+.stats-band div:nth-child(2) {
+  border-left-color: var(--glacier);
+}
+
+.stats-band div:nth-child(3) {
+  border-left-color: var(--coral);
+}
+
+.stats-band div:nth-child(4) {
+  border-left-color: var(--violet);
 }
 
 .stats-band strong,
@@ -318,8 +387,19 @@ button {
 }
 
 .section-heading {
+  position: relative;
   max-width: 53rem;
   margin-bottom: 2rem;
+}
+
+.section-heading::before {
+  content: "";
+  display: block;
+  width: 4.2rem;
+  height: 0.55rem;
+  margin-bottom: 0.85rem;
+  background: linear-gradient(90deg, var(--amber), var(--coral), var(--glacier));
+  clip-path: polygon(0 0, 100% 0, calc(100% - 0.8rem) 100%, 0.8rem 100%);
 }
 
 .section-heading h2,
@@ -356,9 +436,11 @@ button {
 .match-panel,
 .region-list,
 .submit-form {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid var(--line);
-  border-radius: 0.9rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 251, 250, 0.92)),
+    repeating-linear-gradient(135deg, rgba(121, 184, 200, 0.08) 0 1px, transparent 1px 16px);
+  border: 1px solid rgba(18, 61, 53, 0.13);
+  border-radius: 0.35rem 1.25rem 0.35rem 1.25rem;
   box-shadow: var(--soft-shadow);
 }
 
@@ -368,6 +450,7 @@ button {
   display: grid;
   gap: 1rem;
   padding: 1rem;
+  border-top: 6px solid var(--pine-2);
 }
 
 .field {
@@ -391,7 +474,7 @@ button {
   color: var(--ink);
   background: #f7fbfb;
   border: 1px solid var(--line);
-  border-radius: 0.65rem;
+  border-radius: 0.25rem 0.75rem 0.25rem 0.75rem;
 }
 
 .field textarea {
@@ -414,14 +497,14 @@ button {
   color: #395251;
   background: #eef5f6;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: 0.25rem 0.75rem 0.25rem 0.75rem;
   font-size: 0.82rem;
   font-weight: 800;
 }
 
 .chip.is-active {
   color: var(--snow);
-  background: var(--pine-2);
+  background: linear-gradient(135deg, var(--pine-2), var(--slate));
 }
 
 .results-topline {
@@ -444,14 +527,28 @@ button {
 .resource-card,
 .event-card,
 .guide-card {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--line);
-  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(18, 61, 53, 0.12);
+  border-radius: 0.35rem 1.15rem 0.35rem 1.15rem;
   box-shadow: 0 10px 30px rgba(20, 36, 33, 0.06);
 }
 
 .resource-card {
+  position: relative;
   overflow: hidden;
+  border-left: 7px solid var(--accent);
+}
+
+.resource-card::after {
+  content: "";
+  position: absolute;
+  top: 0.85rem;
+  right: -1.6rem;
+  width: 6rem;
+  height: 1.1rem;
+  background: color-mix(in srgb, var(--accent) 84%, white);
+  transform: rotate(36deg);
+  opacity: 0.9;
 }
 
 .card-button {
@@ -481,7 +578,7 @@ button {
 .resource-logo {
   width: 4rem;
   height: 4rem;
-  border-radius: 0.75rem;
+  border-radius: 0.25rem 1rem 0.25rem 1rem;
 }
 
 .resource-summary {
@@ -521,7 +618,7 @@ button {
   place-items: center;
   color: var(--pine);
   background: #edf5f3;
-  border-radius: 999px;
+  border-radius: 0.2rem 0.65rem 0.2rem 0.65rem;
   font-weight: 900;
 }
 
@@ -536,7 +633,7 @@ button {
   padding: 0.35rem 0.5rem;
   color: #34514f;
   background: #eef4f3;
-  border-radius: 999px;
+  border-radius: 0.2rem 0.6rem 0.2rem 0.6rem;
   font-size: 0.75rem;
   font-weight: 800;
 }
@@ -574,7 +671,10 @@ button {
 
 .spotlights-section {
   overflow: hidden;
-  background: linear-gradient(180deg, #f6fafb, #e7f0f1);
+  background:
+    radial-gradient(circle at 14% 20%, rgba(223, 106, 83, 0.16), transparent 16rem),
+    radial-gradient(circle at 88% 28%, rgba(121, 184, 200, 0.28), transparent 18rem),
+    linear-gradient(180deg, #f9fbfa, #dfebec);
 }
 
 .carousel {
@@ -592,7 +692,7 @@ button {
   color: var(--pine);
   background: var(--snow);
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 0.25rem 0.9rem 0.25rem 0.9rem;
   box-shadow: var(--soft-shadow);
 }
 
@@ -616,14 +716,36 @@ button {
   align-content: center;
   gap: 0.8rem;
   padding: clamp(1.2rem, 4vw, 2rem);
-  background: var(--snow);
-  border: 1px solid var(--line);
-  border-radius: 0.95rem;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0 72%, rgba(244, 185, 82, 0.16) 72%),
+    repeating-linear-gradient(135deg, rgba(18, 61, 53, 0.06) 0 1px, transparent 1px 14px);
+  border: 1px solid rgba(18, 61, 53, 0.14);
+  border-radius: 0.35rem 1.6rem 0.35rem 1.6rem;
   box-shadow: var(--shadow);
   transition:
     opacity 260ms ease,
     transform 260ms ease,
     filter 260ms ease;
+}
+
+.spotlight-card::before,
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 2rem;
+  height: 2rem;
+  background: #e7f0f1;
+  border-radius: 999px;
+  transform: translateY(-50%);
+}
+
+.spotlight-card::before {
+  left: -1rem;
+}
+
+.spotlight-card::after {
+  right: -1rem;
 }
 
 .spotlight-card h3,
@@ -645,7 +767,7 @@ button {
 .spotlight-logo {
   width: 5rem;
   height: 5rem;
-  border-radius: 1rem;
+  border-radius: 999px;
   font-size: 1.25rem;
 }
 
@@ -688,7 +810,7 @@ button {
   width: 0.7rem;
   height: 0.7rem;
   background: #a8bdc0;
-  border-radius: 999px;
+  border-radius: 0.15rem 0.5rem 0.15rem 0.5rem;
 }
 
 .carousel-dots button.is-active {
@@ -708,6 +830,7 @@ button {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 1rem;
   padding: 1rem;
+  border-top: 5px solid var(--glacier);
 }
 
 .event-card time {
@@ -716,10 +839,11 @@ button {
   height: 4.5rem;
   place-items: center;
   color: var(--snow);
-  background: var(--pine);
-  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--pine), var(--slate));
+  border-radius: 0.35rem;
   font-weight: 900;
   text-align: center;
+  transform: rotate(-6deg);
 }
 
 .event-card span {
@@ -734,7 +858,9 @@ button {
 }
 
 .map-section {
-  background: #f7faf9;
+  background:
+    linear-gradient(120deg, rgba(18, 61, 53, 0.05) 0 1px, transparent 1px 38px),
+    #f7faf9;
 }
 
 .map-layout,
@@ -751,11 +877,12 @@ button {
   min-height: 30rem;
   overflow: hidden;
   background:
+    repeating-radial-gradient(circle at 45% 48%, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 18px),
     linear-gradient(150deg, rgba(255, 255, 255, 0.82), transparent 35%),
     radial-gradient(circle at 30% 15%, rgba(212, 148, 42, 0.16), transparent 18rem),
     linear-gradient(135deg, #c9dde1, #eef7f8);
   border: 1px solid var(--line);
-  border-radius: 1rem;
+  border-radius: 0.35rem 1.6rem 0.35rem 1.6rem;
   box-shadow: var(--soft-shadow);
 }
 
@@ -775,7 +902,7 @@ button {
   color: var(--pine);
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 0.25rem 0.8rem 0.25rem 0.8rem;
   box-shadow: var(--soft-shadow);
   font-size: 0.84rem;
   font-weight: 900;
@@ -818,7 +945,7 @@ button {
 
 .region-node.is-active {
   color: #10231f;
-  background: var(--amber);
+  background: linear-gradient(135deg, #f2c15c, var(--amber));
 }
 
 .region-list {
@@ -840,7 +967,7 @@ button {
   padding: 0.85rem;
   background: #f6faf9;
   border: 1px solid var(--line);
-  border-radius: 0.7rem;
+  border-radius: 0.25rem 0.8rem 0.25rem 0.8rem;
   text-decoration: none;
 }
 
@@ -853,7 +980,18 @@ button {
 }
 
 .guide-card {
+  position: relative;
   padding: 1.1rem;
+  border-top: 5px solid var(--amber);
+}
+
+.guide-card:nth-child(2) {
+  border-top-color: var(--coral);
+  transform: translateY(1rem);
+}
+
+.guide-card:nth-child(3) {
+  border-top-color: var(--glacier);
 }
 
 .guide-card p {
@@ -862,6 +1000,7 @@ button {
 
 .match-panel {
   padding: 1.25rem;
+  border-top: 6px solid var(--violet);
 }
 
 .match-panel h2 {
@@ -876,7 +1015,9 @@ button {
 }
 
 .submit-section {
-  background: linear-gradient(180deg, #ffffff, #edf6f6);
+  background:
+    radial-gradient(circle at 15% 30%, rgba(212, 148, 42, 0.18), transparent 17rem),
+    linear-gradient(180deg, #ffffff, #edf6f6);
 }
 
 .submit-form {
@@ -884,6 +1025,7 @@ button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   padding: clamp(1rem, 3vw, 1.5rem);
+  border-top: 6px solid var(--coral);
 }
 
 .submit-form .full,
@@ -906,7 +1048,10 @@ button {
 
 .about-section {
   align-items: center;
-  background: var(--pine);
+  background:
+    linear-gradient(135deg, rgba(212, 148, 42, 0.16) 0 16%, transparent 16%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 18px),
+    var(--pine);
   color: var(--snow);
 }
 
