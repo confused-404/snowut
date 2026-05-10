@@ -582,6 +582,8 @@ button {
 }
 
 .round-button {
+  position: relative;
+  z-index: 6;
   display: grid;
   width: 3rem;
   height: 3rem;
@@ -657,6 +659,7 @@ button {
   z-index: 2;
   opacity: 0.52;
   filter: saturate(0.8);
+  pointer-events: none;
   transform: translateX(-42%) scale(0.86);
 }
 
@@ -664,6 +667,7 @@ button {
   z-index: 2;
   opacity: 0.52;
   filter: saturate(0.8);
+  pointer-events: none;
   transform: translateX(42%) scale(0.86);
 }
 
