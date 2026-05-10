@@ -1,0 +1,42 @@
+export const events = [
+  {
+    id: "beacon-practice",
+    title: "Beacon Practice Night",
+    date: "Jan 14",
+    region: "Salt Lake Area",
+    category: "Safety",
+    host: "Utah Avalanche Center",
+  },
+  {
+    id: "adaptive-open-house",
+    title: "Adaptive Ski Open House",
+    date: "Jan 21",
+    region: "Park City / Wasatch Back",
+    category: "Accessibility/Adaptive Sports",
+    host: "National Ability Center",
+  },
+  {
+    id: "clean-air-commute",
+    title: "Clean Air Canyon Commute Week",
+    date: "Feb 2",
+    region: "Statewide",
+    category: "Environmental/Climate",
+    host: "UCAIR",
+  },
+  {
+    id: "youth-snow-day",
+    title: "Youth Snow Day",
+    date: "Feb 8",
+    region: "Northern Utah",
+    category: "Kids and Youth Programs",
+    host: "Ski Utah Snowriders",
+  },
+  {
+    id: "volunteer-stewardship",
+    title: "Winter Stewardship Volunteer Meet-Up",
+    date: "Mar 5",
+    region: "Salt Lake Area",
+    category: "Volunteer Opportunities",
+    host: "Wasatch Backcountry Alliance",
+  },
+];
