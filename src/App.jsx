@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { audiences, categories, regions, resources } from "./data/resources";
 import { events } from "./data/events";
 
@@ -42,6 +43,25 @@ const matchOptions = [
   { label: "Community aid", categories: ["Community Support", "Financial Assistance"] },
 ];
 
+// Map configuration
+const mapContainerStyle = {
+  width: '100%',
+  height: '700px'
+};
+
+const utahCenter = {
+  lat: 39.3210,
+  lng: -111.0937
+};
+
+// Strict Utah Boundaries
+const UTAH_BOUNDS = {
+  north: 42.05,
+  south: 36.95,
+  west: -114.1,
+  east: -109.0,
+};
+
 function App() {
   const [query, setQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -53,6 +73,11 @@ function App() {
   const [eventCategory, setEventCategory] = useState("All categories");
   const [matchChoice, setMatchChoice] = useState(matchOptions[0].label);
   const [submissionStatus, setSubmissionStatus] = useState("");
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: import.meta.env.VITE_MAPS_API_KEY
+  });
 
   const featuredResources = useMemo(
     () => resources.filter((resource) => resource.featured),
@@ -206,6 +231,7 @@ function App() {
           activeRegion={activeRegion}
           setActiveRegion={setActiveRegion}
           activeRegionResources={activeRegionResources}
+          isLoaded={isLoaded}
         />
         <GuidesAndMatching
           matchChoice={matchChoice}
@@ -571,39 +597,94 @@ function Events({ eventCategory, setEventCategory, visibleEvents }) {
   );
 }
 
-function MapSection({ activeRegion, setActiveRegion, activeRegionResources }) {
+function MapSection({ activeRegion, setActiveRegion, activeRegionResources, isLoaded }) {
+  const [map, setMap] = useState(null);
+
+  // Map settings to restrict view to Utah
+  const mapOptions = useMemo(() => ({
+    restriction: {
+      latLngBounds: UTAH_BOUNDS,
+      strictBounds: false,
+    },
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+    styles: [
+      {
+        featureType: "administrative.province",
+        elementType: "geometry.stroke",
+        stylers: [{ visibility: "on" }, { color: "#123d35" }, { weight: 2 }],
+      },
+    ],
+  }), []);
+
+  const onLoad = useCallback(function callback(map) {
+    setMap(map);
+  }, []);
+
+  const onUnmount = useCallback(function callback(map) {
+    setMap(null);
+  }, []);
+
   return (
     <section id="map" className="section section-anchor map-section">
       <SectionHeading
         eyebrow="Interactive map"
-        title="Browse resources by Utah snow-sport region."
-        text="A region-based map keeps the interface usable without requiring exact user addresses."
+        title="Explore resources by geography."
+        text="Click a region in the list to filter or select a marker on the map for details."
       />
       <div className="map-layout">
-        <div className="map-panel" aria-label="Utah region selector">
-          {regions.map((region, index) => (
-            <button
-              key={region}
-              className={`region-node ${activeRegion === region ? "is-active" : ""}`}
-              style={{ "--node-index": index }}
-              type="button"
-              onClick={() => setActiveRegion(region)}
+        <div className="map-panel" aria-label="Google Maps View">
+          {isLoaded ? (
+            <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              center={utahCenter}
+              zoom={7}
+              options={mapOptions}
+              onLoad={onLoad}
+              onUnmount={onUnmount}
             >
-              {region}
-            </button>
-          ))}
+              {activeRegionResources.map((resource) => (
+                resource.lat && resource.lng && (
+                  <Marker
+                    key={resource.id}
+                    position={{ lat: resource.lat, lng: resource.lng }}
+                    title={resource.name}
+                    onClick={() => setActiveRegion(resource.region)}
+                  />
+                )
+              ))}
+            </GoogleMap>
+          ) : (
+            <div style={{ padding: '2rem' }}>Loading maps...</div>
+          )}
         </div>
+        
         <div className="region-list">
-          <p className="eyebrow">{activeRegion}</p>
-          <h3>{activeRegionResources.length} matching resources</h3>
+          <p className="filter-label">Selected Region</p>
+          <select 
+            value={activeRegion} 
+            onChange={(e) => setActiveRegion(e.target.value)}
+            className="region-selector"
+          >
+            <option value="Statewide">Statewide</option>
+            {regions.map(r => <option key={r} value={r}>{r}</option>)}
+          </select>
+
+          <h3>{activeRegionResources.length} resources in {activeRegion}</h3>
           <ul>
-            {activeRegionResources.slice(0, 6).map((resource) => (
+            {activeRegionResources.slice(0, 8).map((resource) => (
               <li key={resource.id}>
                 <strong>{resource.name}</strong>
-                <span>{resource.categories.slice(0, 2).join(" · ")}</span>
+                <span>{resource.categories[0]}</span>
               </li>
             ))}
           </ul>
+          {activeRegion !== "Statewide" && (
+            <button className="button ghost" onClick={() => setActiveRegion("Statewide")}>
+              ← Back to Statewide
+            </button>
+          )}
         </div>
       </div>
     </section>

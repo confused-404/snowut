@@ -67,7 +67,7 @@ button {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -874,83 +874,53 @@ button {
 
 .map-panel {
   position: relative;
-  min-height: 30rem;
+  min-height: 44rem;
   overflow: hidden;
-  background:
-    repeating-radial-gradient(circle at 45% 48%, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 18px),
-    linear-gradient(150deg, rgba(255, 255, 255, 0.82), transparent 35%),
-    radial-gradient(circle at 30% 15%, rgba(212, 148, 42, 0.16), transparent 18rem),
-    linear-gradient(135deg, #c9dde1, #eef7f8);
+  background: #f1f1f1;
   border: 1px solid var(--line);
   border-radius: 0.35rem 1.6rem 0.35rem 1.6rem;
   box-shadow: var(--soft-shadow);
 }
 
-.map-panel::before {
-  content: "";
-  position: absolute;
-  inset: 3rem 27% 3rem 29%;
-  background: linear-gradient(180deg, #456f76, #173f38);
-  clip-path: polygon(45% 0, 62% 9%, 58% 21%, 69% 34%, 61% 46%, 70% 62%, 55% 76%, 59% 100%, 38% 92%, 32% 72%, 20% 59%, 30% 43%, 24% 27%, 36% 16%);
-  opacity: 0.95;
-}
-
-.region-node {
-  position: absolute;
-  max-width: 12rem;
-  padding: 0.58rem 0.75rem;
-  color: var(--pine);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--line);
-  border-radius: 0.25rem 0.8rem 0.25rem 0.8rem;
-  box-shadow: var(--soft-shadow);
-  font-size: 0.84rem;
-  font-weight: 900;
-}
-
-.region-node:nth-child(1) {
-  left: 39%;
-  top: 9%;
-}
-
-.region-node:nth-child(2) {
-  left: 12%;
-  top: 25%;
-}
-
-.region-node:nth-child(3) {
-  left: 55%;
-  top: 29%;
-}
-
-.region-node:nth-child(4) {
-  left: 18%;
-  top: 46%;
-}
-
-.region-node:nth-child(5) {
-  left: 48%;
-  top: 55%;
-}
-
-.region-node:nth-child(6) {
-  left: 22%;
-  top: 73%;
-}
-
-.region-node:nth-child(7) {
-  left: 58%;
-  top: 75%;
-}
-
-.region-node.is-active {
-  color: #10231f;
-  background: linear-gradient(135deg, #f2c15c, var(--amber));
-}
-
 .region-list {
   padding: 1.25rem;
 }
+
+/* REGION SELECTOR START */
+.region-selector {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0 1.25rem;
+  padding: 0.85rem 1rem;
+  background-color: #f0f4f4;
+  border: 2px solid var(--pine);
+  border-radius: 0.25rem 0.8rem 0.25rem 0.8rem;
+  color: var(--pine);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  appearance: auto;
+}
+
+.region-selector:hover {
+  background-color: #e2eaea;
+  border-color: var(--amber);
+  transform: scale(1.02); /* Slight visual "zoom" feedback */
+}
+
+.region-selector:focus {
+  outline: 3px solid var(--amber);
+  background-color: var(--snow);
+}
+
+/* Placeholder for Map Zoom Logic 
+   If you add a class to the map container via JS, this handles the zoom animation 
+*/
+.map-panel.is-zoomed {
+  transform: scale(1.5);
+  transition: transform 0.5s ease-in-out;
+}
+/* REGION SELECTOR END */
 
 .region-list ul {
   display: grid;
@@ -1154,46 +1124,10 @@ button {
   }
 
   .map-panel {
-    min-height: 36rem;
+    min-height: 40rem;
   }
 
-  .region-node {
-    left: 8%;
-    right: 8%;
-    top: calc(6% + var(--node-index) * 12%);
-    max-width: none;
-  }
-
-  .region-node:nth-child(n) {
-    left: 8%;
-    right: 8%;
-  }
-
-  .region-node:nth-child(1) {
-    top: 5%;
-  }
-
-  .region-node:nth-child(2) {
-    top: 17%;
-  }
-
-  .region-node:nth-child(3) {
-    top: 29%;
-  }
-
-  .region-node:nth-child(4) {
-    top: 41%;
-  }
-
-  .region-node:nth-child(5) {
-    top: 53%;
-  }
-
-  .region-node:nth-child(6) {
-    top: 65%;
-  }
-
-  .region-node:nth-child(7) {
-    top: 77%;
+  .map-panel:hover {
+    transform: none;
   }
 }
