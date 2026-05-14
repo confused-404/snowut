@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Women of Winter logo fallback">
+  <rect width="128" height="128" rx="26" fill="#b45178"/>
+  <text
+    x="64"
+    y="73"
+    text-anchor="middle"
+    font-family="Inter, Segoe UI, Arial, sans-serif"
+    font-size="40"
+    font-weight="800"
+    fill="#ffffff"
+  >
+    WOW
+  </text>
+</svg>

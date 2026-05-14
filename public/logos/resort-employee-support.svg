@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Resort employee support logo fallback">
+  <rect width="128" height="128" rx="26" fill="#74685a"/>
+  <text
+    x="64"
+    y="73"
+    text-anchor="middle"
+    font-family="Inter, Segoe UI, Arial, sans-serif"
+    font-size="34"
+    font-weight="800"
+    fill="#ffffff"
+  >
+    EAP
+  </text>
+</svg>
